@@ -1,0 +1,1 @@
+Provides a secure sandbox environment for running untrusted Lua code (for example, code written by players). This mod is meant as a library for use by other mods; it does not provide any player-accessible objects.

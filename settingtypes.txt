@@ -1,0 +1,14 @@
+#Maximum length, in characters, of a string constructible with string.rep.
+libluabox_string_rep_max (Max string.rep Length) int 64000 0 4294967295
+
+#Maximum cost of a message sent over a Digilines network. Cost is roughly
+#equivalent to size in bytes.
+libluabox_digiline_max (Max Digiline Cost) int 50000 0 4294967295
+
+#Maximum number of events (a rough measure of CPU time) that a single
+#sandboxed script is allowed to run before being terminated.
+libluabox_events_max (Max Events) int 10000 1 4294967295
+
+#Maximum length, in characters, of the serialized form of the mem table that a
+#single sandboxed script is allowed to construct.
+libluabox_mem_max (Max Mem) int 100000 0 4294967295
