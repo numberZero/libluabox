@@ -19,10 +19,11 @@ In the event that the source code doesn’t compile, an error is raised; calling
 ## `function libluabox.standard_env_builder(env)`
 The standard environment builder which adds the safe subset of the Lua standard library to the environment. Most consumers will want to place this function first in the `env_builders` list passed to `libluabox.create_program`.
 
-## `function libluabox.make_digilines_env_builder(pos)`
+## `function libluabox.make_digilines_env_builder(pos, rules)`
 Constructs and returns an environment builder that provides a Digilines API.
 
 * `pos` is the node position from which the Digilines messages should be emitted.
+* `rules` is the connectivity rules for connecting to Digilines conductors, which can be omitted to use the default rules.
 
 The Digilines API exposed to the script is `function digiline_send(channel, msg)`. `channel` must be a string which is the channel name to send on. `msg` is the message to send; anything that’s not a boolean, number, string, or table is filtered out (including keys and values of tables, recursively). `true` is returned if a message is sent (including if some but not all of the message was filtered); `false` is returned if the message exceeded the cost limit or was completely filtered out due to being e.g. a function.
 
