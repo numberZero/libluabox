@@ -12,12 +12,12 @@ Like any software, libluabox is a best effort attempt and may contain bugs. Trus
 Constructs and returns a new program object.
 
 * `src` is a string containing the program’s source code.
-* `env_builders` is a numerically indexed table containing the environment builders to apply when running the program. Each environment builder must be a function taking one parameter, the environment table under construction, and modifying the table as desired. The event builders are invoked in the order they appear in the table, which allows later builders to override earlier ones. Most mods will want to use some of the standard environment builders provided by libluabox and also add their own custom environment builders depending on how they want the scripts to interact with the world.
+* `env_builders` is a numerically indexed table containing the environment builders to apply when running the program. Each environment builder must be a function taking two parameters, the program object and the environment table under construction, and modifying the environment table as desired. The event builders are invoked in the order they appear in the table, which allows later builders to override earlier ones. Most mods will want to use some of the standard environment builders provided by libluabox and also add their own custom environment builders depending on how they want the scripts to interact with the world.
 * `name` is the name of the program, which is reported in certain error messages.
 
 In the event that the source code doesn’t compile, an error is raised; calling mods probably want to use `pcall` or `xpcall` in order to report this error to the player usefully and avoid crashing the world.
 
-## `function libluabox.standard_env_builder(env)`
+## `function libluabox.standard_env_builder(program, env)`
 The standard environment builder which adds the safe subset of the Lua standard library to the environment. Most consumers will want to place this function first in the `env_builders` list passed to `libluabox.create_program`.
 
 ## `function libluabox.make_digilines_env_builder(pos, rules)`
