@@ -8,11 +8,12 @@ libluabox is built around the concept of a *program object*. A program object re
 Like any software, libluabox is a best effort attempt and may contain bugs. Trusting the security of critical data to libluabox alone is probably a poor decision. Responsible server operators should follow the principle of defense in depth by using appropriate OS-level isolation (dedicated user IDs, `chroot`s, containers, etc.) to prevent their Minetest server process from affecting non-Minetest-related files and processes, and should take regular backups of their Minetest worlds to mitigate the potential damage caused by an exploit.
 
 # API
-## `function libluabox.create_program(src, env_builders)`
+## `function libluabox.create_program(src, env_builders, name)`
 Constructs and returns a new program object.
 
 * `src` is a string containing the program’s source code.
 * `env_builders` is a numerically indexed table containing the environment builders to apply when running the program. Each environment builder must be a function taking one parameter, the environment table under construction, and modifying the table as desired. The event builders are invoked in the order they appear in the table, which allows later builders to override earlier ones. Most mods will want to use some of the standard environment builders provided by libluabox and also add their own custom environment builders depending on how they want the scripts to interact with the world.
+* `name` is the name of the program, which is reported in certain error messages.
 
 In the event that the source code doesn’t compile, an error is raised; calling mods probably want to use `pcall` or `xpcall` in order to report this error to the player usefully and avoid crashing the world.
 
