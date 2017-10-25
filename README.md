@@ -33,6 +33,9 @@ It is acceptable to call this function and use the resulting environment builder
 ## `function program:run()`
 Runs the target script. If the script successfully runs to completion, the return value is the global environment that the script used, including any modifications the script made. Otherwise, an appropriate error is raised; calling mods probably want to use `pcall` or `xpcall` in order to report this error to the player usefully and avoid crashing the world.
 
+## Field `program.mod_data`
+This field is not, and will never be, touched in any way by libluabox. Mods consuming libluabox can therefore rely on it being set to `nil` on a freshly created program object, and can store any value of any type in it for later access. Mods needing to attach more than one value to a program object should do so by setting `mod_data` to a table and storing the values in that table. Mods that share program objects between them must come up with their own conventions for what will be stored in `mod_data`; that is outside the scope of libluabox itself to decide.
+
 # Guidelines for environment builders
 When writing environment builders, consider the following guidelines:
 
