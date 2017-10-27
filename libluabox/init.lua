@@ -4,6 +4,7 @@ local jit_found = rawget(_G,"jit") ~= nil
 
 local build_environment = dofile(modpath .. "/environment.lua")
 local loadstring = dofile(modpath .. "/cache.lua")
+dofile(modpath .. "/rlib.lua")
 
 local str_meta = getmetatable("")
 

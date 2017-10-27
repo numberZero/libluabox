@@ -1,7 +1,8 @@
 local standard_library = {
 	_G = { "assert", "error", "ipairs", "next", "pairs", "select", "type",
 		"unpack", "tostring", "tonumber" },
-	string = { "byte", "char", "format", "len", "lower", "reverse", "sub", "upper" },
+	string = { "byte", "char", "format", "len", "lower", "reverse",
+		"strstr", "sub", "upper" },
 	table = { "concat", "insert", "maxn", "remove", "sort" },
 	math = { "abs", "acos", "asin", "atan", "atan2", "ceil", "cos", "cosh",
 		"deg", "exp", "floor", "fmod", "frexp", "huge", "ldexp",
