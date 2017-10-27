@@ -3,6 +3,7 @@ local modpath = minetest.get_current_modpath()
 local jit_found = rawget(_G,"jit") ~= nil
 
 local build_environment = dofile(modpath .. "/environment.lua")
+local loadstring = dofile(modpath .. "/cache.lua")
 
 local str_meta = getmetatable("")
 
