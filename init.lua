@@ -13,7 +13,7 @@ function libluabox.create_sandbox(name, options)
 	assert(type(options) == "table")
 	local sandbox = {}
 	sandbox.name = name
-	sandbox.instruction_limit = tonumber(options.instruction_limit or 8192)
+	sandbox.instruction_limit = tonumber(options.instruction_limit) or 8192
 	sandbox.env = build_environment(options)
 	return sandbox
 end
