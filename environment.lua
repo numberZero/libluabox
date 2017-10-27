@@ -68,6 +68,13 @@ local function build_environment(options)
 	return env
 end
 
+function libluabox.register_library(name, library)
+	if extra_library[name] then
+		error("Library " .. name .. " already registered")
+	end
+	extra_library[name] = library
+end
+
 function libluabox.add_library(sandbox, library)
 	for name, contents in pairs(library) do
 		add_extra_lib(sandbox.env, name, contents)
