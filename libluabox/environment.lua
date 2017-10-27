@@ -15,6 +15,7 @@ local optional_library = {
 }
 
 local extra_library = {}
+local auto_included_libs = {}
 
 local function add_system_lib(env, name, list)
 	local source = _G[name]
@@ -59,7 +60,11 @@ local function build_environment(options)
 		return env
 	end
 	for group, library in pairs(extra_library) do
-		if options["use_" .. group] then
+		local include = options["use_" .. group]
+		if include == nil then
+			include = auto_included_libs[group]
+		end
+		if include then
 			for name, contents in pairs(library) do
 				add_extra_lib(env, name, contents)
 			end
@@ -68,11 +73,14 @@ local function build_environment(options)
 	return env
 end
 
-function libluabox.register_library(name, library)
+function libluabox.register_library(name, library, auto_include)
 	if extra_library[name] then
 		error("Library " .. name .. " already registered")
 	end
 	extra_library[name] = library
+	if auto_include then
+		auto_included_libs[name] = true
+	end
 end
 
 function libluabox.add_library(sandbox, library)
