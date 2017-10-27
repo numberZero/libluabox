@@ -37,7 +37,7 @@ libluabox-supplied `string.strstr`
 * `rstring`: restricted versions of `string.find` and `string.rep`: `find`
 supports plaintext search only, `rep` has limit on result length.
 * `rtime`: `os.clock`, `os.difftime`, `os.time` and `os.date`, restricted to
-formats `nil`, "%c", "*t" and "!*t".
+formats `%c`, `*t` and `!*t`.
 
 ## Extending libluabox
 ### Library format
