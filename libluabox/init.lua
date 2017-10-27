@@ -22,7 +22,7 @@ end
 function libluabox.load_code(sandbox, code)
 	assert(type(code) == "string")
 	local f, err = loadstring(code, "Code for " .. sandbox.name)
-	if err then
+	if not f then
 		return false, err
 	end
 	setfenv(f, sandbox.env)
@@ -30,6 +30,7 @@ function libluabox.load_code(sandbox, code)
 		jit.off(f, true)
 	end
 	sandbox.program = f
+	return true
 end
 
 local function timeout_hook()

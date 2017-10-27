@@ -45,6 +45,9 @@ local function build_environment(options)
 	local env = {}
 	env._G = env
 	env._VERSION = _VERSION
+	if options.no_stdlib then
+		return env
+	end
 	for name, list in pairs(standard_library) do
 		if options["use_" .. name] ~= false then
 			add_system_lib(env, name, list)
