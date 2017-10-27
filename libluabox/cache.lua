@@ -1,10 +1,10 @@
-if minetest.settings.get_bool("libluabox.enable_cache") == false then
+if minetest.settings:get_bool("libluabox.enable_cache") == false then
 	return loadstring
 end
 
-local cache_entries_threshold = tonumber(minetest.settings.get("libluabox.cache_entries_threshold")) or 65536
-local cache_size_threshold = tonumber(minetest.settings.get("libluabox.cache_size_threshold")) or 1024 * 1024
-local cache_age_threshold = tonumber(minetest.settings.get("libluabox.cache_age_threshold")) or 60
+local cache_entries_threshold = tonumber(minetest.settings:get("libluabox.cache_entries_threshold")) or 65536
+local cache_size_threshold = tonumber(minetest.settings:get("libluabox.cache_size_threshold")) or 1024 * 1024
+local cache_age_threshold = tonumber(minetest.settings:get("libluabox.cache_age_threshold")) or 60
 
 local cache = {}
 local cache_entries = 0

@@ -1,5 +1,5 @@
 libluabox = {}
-local modpath = minetest.get_current_modpath()
+local modpath = minetest.get_modpath("libluabox")
 local jit_found = rawget(_G,"jit") ~= nil
 
 local build_environment = dofile(modpath .. "/environment.lua")
