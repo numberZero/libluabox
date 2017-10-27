@@ -56,7 +56,7 @@ name, if any.
 ### `register_library(name, library, auto_include)`
 Adds `library` with name `name` to the list of extra libraries available.
 
-If `auto_include` is specified, the library will be added to all new sandboxes
+If `auto_include` is `true`, the library will be added to all new sandboxes
 by default.
 
 ### `add_library(sandbox, library)`
