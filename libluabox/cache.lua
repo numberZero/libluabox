@@ -1,3 +1,6 @@
+-- LuaBox library
+-- Copyright (c) 2017 Lobachevskiy Vitaliy
+
 if minetest.settings:get_bool("libluabox.enable_cache") == false then
 	return loadstring
 end

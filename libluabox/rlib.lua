@@ -1,3 +1,6 @@
+-- LuaBox library
+-- Copyright (c) 2017 Lobachevskiy Vitaliy
+
 local strrep_limit = tonumber(minetest.settings:get("libluabox.string_rep_limit")) or 65536
 
 function string.strstr(haystack, needle, base)

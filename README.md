@@ -1,7 +1,12 @@
+# LuaBox library
+This is a helper library providing simple general-purpose sandboxing system.
+
+License: MIT (see `LICENSE.txt` for details).
+
 # API
 All functions are contained in the `libluabox` namespace.
 
-## Using libluabox
+## Using LuaBox
 ### `create_sandbox(name, options)`
 Creates a sandbox with label `name`. `options` should be a table, if supplied.
 Supported options are:

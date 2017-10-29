@@ -1,3 +1,6 @@
+-- LuaBox library
+-- Copyright (c) 2017 Lobachevskiy Vitaliy
+
 libluabox = {}
 local modpath = minetest.get_modpath("libluabox")
 local jit_found = rawget(_G,"jit") ~= nil

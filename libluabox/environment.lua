@@ -1,3 +1,6 @@
+-- LuaBox library
+-- Copyright (c) 2017 Lobachevskiy Vitaliy
+
 local standard_library = {
 	_G = { "assert", "error", "ipairs", "next", "pairs", "select", "type",
 		"unpack", "tostring", "tonumber" },
