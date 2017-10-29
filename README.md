@@ -7,8 +7,36 @@ License: MIT (see `LICENSE.txt` for details).
 All functions are contained in the `libluabox` namespace.
 
 ## Using LuaBox
+Example:
+
+```lua
+local a, b = 12, 5
+local sb = libluabox.create_sandbox("Example1")
+libluabox.load_code(sb, "c = a + b")
+sb.env.a = a
+sb.env.b = b
+if libluabox.run(sb) then
+	print(("Success! %d + %d is %d"):format(a, b, sb.env.c))
+else
+	print("Fail")
+end
+-- drop reference to `sb`
+```
+
+### Sandbox
+Main object managed by the library.
+
+Public properties:
+* `name` (string, read only) Sandbox name.
+* `env` (table) The environment for the code being sandboxed. May be altered
+but should not be replaced unless absolutely necessary.
+
+Mods may add properties of form `modname:property`, if necessary.
+
 ### `create_sandbox(name, options)`
-Creates a sandbox with label `name`. `options` should be a table, if supplied.
+Creates and returns a sandbox with label `name`. `options` should be a table,
+if supplied.
+
 Supported options are:
 
 * `instruction_limit` (integer) Maximum amount of instruction that may be
