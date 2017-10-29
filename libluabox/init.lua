@@ -25,7 +25,6 @@ function libluabox.load_code(sandbox, code)
 	if not f then
 		return false, err
 	end
-	setfenv(f, sandbox.env)
 	if jit_found then
 		jit.off(f, true)
 	end
@@ -48,8 +47,15 @@ local function wrapper(sandbox)
 end
 
 function libluabox.run(sandbox)
-	str_meta.__index = sandbox.env.string
+	if not sandbox.program then
+		return false, "Sandbox has no code"
+	end
+	setfenv(sandbox.program, sandbox.env) -- make sure the environment is correct
+	str_meta.__index = sandbox.env.string -- prevent string methods leakage
 	local ok, err = pcall(wrapper, sandbox)
 	str_meta.__index = string -- this *must* be executed or weird things will happen
+	setfenv(sandbox.program, nil) -- drop the reference to `env`
+	-- `program` may be shared due to caching, so could hold `env`
+	-- in memory after sandbox destruction otherwise
 	return ok, err
 end
