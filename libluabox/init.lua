@@ -61,7 +61,7 @@ function libluabox.run(sandbox)
 	str_meta.__index = sandbox.env.string -- prevent string methods leakage
 	local ok, err = pcall(wrapper, sandbox)
 	str_meta.__index = string -- this *must* be executed or weird things will happen
-	setfenv(sandbox.program, nil) -- drop the reference to `env`
+	setfenv(sandbox.program, {}) -- drop the reference to `env`
 	-- `program` may be shared due to caching, so could hold `env`
 	-- in memory after sandbox destruction otherwise
 	return ok, err
