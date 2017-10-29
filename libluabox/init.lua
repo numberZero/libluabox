@@ -4,6 +4,7 @@
 libluabox = {}
 local modpath = minetest.get_modpath("libluabox")
 local jit_found = rawget(_G,"jit") ~= nil
+local disallow_bytecode = not minetest.settings:get_bool("libluabox.allow_bytecode")
 
 local build_environment = dofile(modpath .. "/environment.lua")
 local loadstring = dofile(modpath .. "/cache.lua")
@@ -24,6 +25,9 @@ end
 
 function libluabox.load_code(sandbox, code)
 	assert(type(code) == "string")
+	if disallow_bytecode and code:byte(1) == 27 then
+		return false, "Byte code is not allowed"
+	end
 	local f, err = loadstring(code, "Code for " .. sandbox.name)
 	if not f then
 		return false, err
