@@ -23,16 +23,6 @@ end
 -- drop reference to `sb`
 ```
 
-### Sandbox
-Main object managed by the library.
-
-Public properties:
-* `name` (string, read only) Sandbox name.
-* `env` (table) The environment for the code being sandboxed. May be altered
-but should not be replaced unless absolutely necessary.
-
-Mods may add properties of form `modname:property`, if necessary.
-
 ### `create_sandbox(name, options)`
 Creates and returns a sandbox with label `name`. `options` should be a table,
 if supplied.
@@ -59,6 +49,16 @@ Returns `true` on successful run, `false` and message in case of error
 (including
 code timing out).
 
+### Sandbox
+Main object managed by the library.
+
+Public properties:
+* `name` (string, read only) Sandbox name.
+* `env` (table) The environment for the code being sandboxed. May be altered
+but should not be replaced unless absolutely necessary.
+
+Mods may add properties of form `modname:property`, if necessary.
+
 ### Core libraries
 * `_G`: some commonly used globals like `pairs`
 * `string`, `table`, `math`: safe parts of Lua standard libraries, plus
@@ -73,6 +73,15 @@ supports plaintext search only, `rep` has limit on result length.
 formats `%c`, `*t` and `!*t`.
 
 ## Extending libluabox
+### `register_library(name, library, auto_include)`
+Adds `library` with name `name` to the list of extra libraries available.
+
+If `auto_include` is `true`, the library will be added to all new sandboxes
+by default.
+
+### `add_library(sandbox, library)`
+Add (unregistered) `library` to `sandbox` environment.
+
 ### Library format
 The library structure is simple:
 
@@ -85,12 +94,3 @@ The library structure is simple:
 A shallow copy of each table from the library is added to the sandbox
 environment with the key as the name, merging with existing table with the same
 name, if any.
-
-### `register_library(name, library, auto_include)`
-Adds `library` with name `name` to the list of extra libraries available.
-
-If `auto_include` is `true`, the library will be added to all new sandboxes
-by default.
-
-### `add_library(sandbox, library)`
-Add (unregistered) `library` to `sandbox` environment.
